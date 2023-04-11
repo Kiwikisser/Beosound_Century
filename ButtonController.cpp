@@ -60,7 +60,3 @@ void ButtonController::executeEvent(event buttonEvent){
     
   }
 }
-
-bool ButtonController::isButtonPressed(void){
-  
-}

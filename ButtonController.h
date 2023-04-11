@@ -14,7 +14,6 @@ class ButtonController : public IEventController {
 
   protected:
     void executeEvent(event) override;
-    bool isButtonPressed(void);
     
     PlayerState*          m_playerState;
     event*                m_buttons;
