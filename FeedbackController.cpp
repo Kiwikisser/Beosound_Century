@@ -76,23 +76,23 @@ void FeedbackController::updateFrequency(String message, float frequency){
 }
 
 void FeedbackController::feedbackModeToCd(){
-  showMessageRevert("Changed mode to:", "CD");
+  showMessageRevert("Changed mode to:", "CD", 1500);
 }
 
 void FeedbackController::feedbackModeToRadio(){
-  showMessageRevert("Changed mode to:", "Radio");
+  showMessageRevert("Changed mode to:", "Radio", 1500);
 }
 
 void FeedbackController::feedbackModeToAUX(){
-  showMessageRevert("Changed mode to:", "AUX");
+  showMessageRevert("Changed mode to:", "AUX", 1500);
 }
 
 void FeedbackController::feedbackModeToTape(){
-  showMessageRevert("Changed mode to:", "Tape");
+  showMessageRevert("Changed mode to:", "Tape", 1500);
 }
 
 void FeedbackController::feedbackOpenCDCover(){
-  showMessageRevert("CD cover open", "Insert CD");
+  showMessageRevert("CD cover open", "Insert CD", 3000);
 }
 
 //void FeedbackController::feedbackChangeMode(event media){
@@ -129,19 +129,22 @@ void FeedbackController::showMessagePersist(String msgTop, String msgBot){
   this->m_lcd->print(msgBot);
 }
 
-void FeedbackController::showMessageRevert(String msgTop, String msgBot){
+void FeedbackController::showMessageRevert(String msgTop, String msgBot, uint16_t revertDelay){
   Serial.println("printing reverting message");
   this->m_lcd->clear();
   this->m_lcd->home();
   this->m_lcd->print(msgTop);
   this->m_lcd->setCursor(0, 1);
   this->m_lcd->print(msgBot);
-  delay(this->m_revertDelay);
-  this->m_lcd->clear();
-  this->m_lcd->home();
-  this->m_lcd->print(this->m_messageOnTop);
-  this->m_lcd->setCursor(0, 1);
-  this->m_lcd->print(this->m_messageOnBot);
+  setRevertDelay(revertDelay);
+  flagForActiveFeedback();
+  
+  // delay(this->m_revertDelay);
+  // this->m_lcd->clear();
+  // this->m_lcd->home();
+  // this->m_lcd->print(this->m_messageOnTop);
+  // this->m_lcd->setCursor(0, 1);
+  // this->m_lcd->print(this->m_messageOnBot);
 }
 
 void FeedbackController::clearMessage(){

@@ -34,7 +34,7 @@ class FeedbackController {
   protected:
     void setRevertDelay(uint16_t);
     void showMessagePersist(String, String);
-    void showMessageRevert(String, String);
+    void showMessageRevert(String, String, uint16_t);
   
     LiquidCrystal_I2C* m_lcd;
     String    m_messageOnTop;

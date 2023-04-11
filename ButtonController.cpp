@@ -9,20 +9,26 @@ void ButtonController::initialise(){
 
 void ButtonController::listenForEvent(){
   unsigned long currentMillis = millis();
-  const long debounceTime     = 200;
+  const long debounceTime     = 120;
+  bool newButtonState[6] = {};
   for(uint8_t i = 0; i<m_buttonCount; i++){
-    bool buttonState = digitalRead(m_buttons[i]);
-    if (buttonState != HIGH && currentMillis - this->m_previousMillis >= debounceTime){
-      this->m_previousMillis = currentMillis;
-      Serial.println(m_buttons[i]);
-      
-      // Surely there is a way to do this better
-      if(this->m_playerState->playerIsOn()){
-        executeEvent(m_buttons[i]);
-      } else if (m_buttons[i] == power) {
-        executeEvent(m_buttons[i]);
+    newButtonState[i] = digitalRead(m_buttons[i]);
+    if (this->oldButtonState[i] != newButtonState[i] && currentMillis - this->m_previousMillis >= debounceTime){
+      if (newButtonState[i] == 0){
+        this->m_previousMillis = currentMillis;
+        
+        // Surely there is a way to do this better
+        if(this->m_playerState->playerIsOn()){
+          this->oldButtonState[i] = newButtonState[i];
+          executeEvent(m_buttons[i]);
+        } else if (m_buttons[i] == power) {
+          this->oldButtonState[i] = newButtonState[i];
+          executeEvent(m_buttons[i]);
+        }
       }
+
     }
+    this->oldButtonState[i] = newButtonState[i];
   }
 }
 
@@ -49,8 +55,6 @@ void ButtonController::executeEvent(event buttonEvent){
       this->m_playerState->openCDCover();
       break;
     case power: 
-      Serial.print("Player turning:");
-      Serial.println(this->m_playerState->playerIsOn());
       this->m_playerState->togglePower();
       break;
     
