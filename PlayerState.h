@@ -21,6 +21,7 @@ class PlayerState {
     void openCDCover(void);
     void updateVolume(uint8_t);
     void updateFrequency(float);
+    void updateFrequencyModulation(modulation);
     void menuNavigateNext(void);
     void menuNavigatePrevious(void);
     void menuSelect(void);
@@ -40,6 +41,7 @@ class PlayerState {
     String    m_playerVolumeMessage = "Volume:";
     float     m_playerFrequency; // defined in two places now
     String    m_playerFrequencyMessage = "Frequency:";
+    String    m_frequencySwitchMessage = "Freq. modulation:";
 };
 
 #endif

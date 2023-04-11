@@ -58,6 +58,10 @@ void PlayerState::updateFrequency(float frequency){
   this->m_feedbackController->updateFrequency(this->m_playerFrequencyMessage, this->m_playerFrequency);
 }
 
+void PlayerState::updateFrequencyModulation(modulation mod){
+  this->m_feedbackController->updateFrequencyModulation(this->m_frequencySwitchMessage,  mod == fm ? "FM" : "AM");
+}
+
 void PlayerState::menuNavigateNext(void){
   /*
   retrieve menu items

@@ -28,11 +28,11 @@ class RadioController : public IEventController {
     float           m_frequencyFM        = 96.9;
     float           m_minimumFrequencyFM = 87.5;
     float           m_maximumFrequencyFM = 108.0;
-    float           m_stepFrequencyFM    = 0.1;
+    float           m_stepFrequencyFM    = 0.2;
     uint16_t        m_frequencyAM        = 605;
-    uint16_t        m_minimumFrequencyAM = 535; // 535-1605 kHz.
+    uint16_t        m_minimumFrequencyAM = 531; // 531-1711 kHz.
     uint16_t        m_maximumFrequencyAM = 1605;
-    uint8_t         m_stepFrequencyAM    = 10;
+    uint8_t         m_stepFrequencyAM    = 9;
 
 };
 

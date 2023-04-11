@@ -75,6 +75,16 @@ void FeedbackController::updateFrequency(String message, float frequency){
   flagForActiveFeedback();
 }
 
+void FeedbackController::updateFrequencyModulation(String message, String mod){
+  this->m_lcd->clear();
+  this->m_lcd->home();
+  this->m_lcd->print(message);
+  this->m_lcd->setCursor(0, 1);
+  this->m_lcd->print(mod);
+  setRevertDelay(1500);
+  flagForActiveFeedback();
+}
+
 void FeedbackController::feedbackModeToCd(){
   showMessageRevert("Changed mode to:", "CD", 1500);
 }
