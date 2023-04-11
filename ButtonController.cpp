@@ -1,0 +1,61 @@
+#include "Arduino.h"
+#include "ButtonController.h"
+
+void ButtonController::initialise(){
+  for(uint8_t i = 0; i<m_buttonCount; i++){
+    pinMode(m_buttons[i], INPUT_PULLUP);
+  }
+}
+
+void ButtonController::listenForEvent(){
+  unsigned long currentMillis = millis();
+  const long debounceTime     = 200;
+  for(uint8_t i = 0; i<m_buttonCount; i++){
+    bool buttonState = digitalRead(m_buttons[i]);
+    if (buttonState != HIGH && currentMillis - this->m_previousMillis >= debounceTime){
+      this->m_previousMillis = currentMillis;
+      Serial.println(m_buttons[i]);
+      
+      if(this->m_playerState->playerIsOn()){
+        executeEvent(m_buttons[i]);
+      } else if (this->m_playerState->playerIsOn() == false && m_buttons[i] == power) {
+        executeEvent(m_buttons[i]);
+      }
+    }
+  }
+}
+
+void ButtonController::executeEvent(event buttonEvent){
+  switch(buttonEvent){
+    case mode_cd: 
+      Serial.println("Changing mode to CD");
+      this->m_playerState->setPlayerMode(cd);
+      break;
+    case mode_radio: 
+      Serial.println("Changing mode to Radio");
+      this->m_playerState->setPlayerMode(radio);
+      break;
+    case mode_aux: 
+      Serial.println("Changing mode to AUX");
+      this->m_playerState->setPlayerMode(aux);
+      break;
+    case mode_tape: 
+      Serial.println("Changing mode to Tape");
+      this->m_playerState->setPlayerMode(tape);
+      break;
+    case open_cd: 
+      Serial.println("Open CD lid");
+      this->m_playerState->openCDCover();
+      break;
+    case power: 
+      Serial.print("Player turning:");
+      Serial.println(this->m_playerState->playerIsOn());
+      this->m_playerState->togglePower();
+      break;
+    
+  }
+}
+
+bool ButtonController::isButtonPressed(void){
+  
+}
