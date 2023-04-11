@@ -19,7 +19,7 @@ void ButtonController::listenForEvent(){
       // Surely there is a way to do this better
       if(this->m_playerState->playerIsOn()){
         executeEvent(m_buttons[i]);
-      } else if (this->m_playerState->playerIsOn() == false && m_buttons[i] == power) {
+      } else if (m_buttons[i] == power) {
         executeEvent(m_buttons[i]);
       }
     }
