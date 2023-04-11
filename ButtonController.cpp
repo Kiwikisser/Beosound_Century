@@ -16,6 +16,7 @@ void ButtonController::listenForEvent(){
       this->m_previousMillis = currentMillis;
       Serial.println(m_buttons[i]);
       
+      // Surely there is a way to do this better
       if(this->m_playerState->playerIsOn()){
         executeEvent(m_buttons[i]);
       } else if (this->m_playerState->playerIsOn() == false && m_buttons[i] == power) {
