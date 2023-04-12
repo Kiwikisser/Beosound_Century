@@ -5,12 +5,12 @@ enum event {
   volume_up       = 0,
   volume_down     = 1,
   
-  mode_tape       = 2,
+  mode_aux        = 2,
   mode_radio      = 3,
   power           = 4,
   open_cd         = 5,
   mode_cd         = 6,
-  mode_aux        = 7,
+  mode_tape       = 7,
   
   pause_play      = 8,
   menu_ok         = 9,
