@@ -15,10 +15,10 @@ void MenuController::listenForEvent(){
   }
 
   if(encoderRotated == 1){
-    registeredEvent = menu_up;
+    registeredEvent = menu_down;
     Serial.println(registeredEvent);
   } else if(encoderRotated == 2){
-    registeredEvent = menu_down;
+    registeredEvent = menu_up;
     Serial.println(registeredEvent);
   }
 

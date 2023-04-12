@@ -14,12 +14,12 @@ class ButtonController : public IEventController {
 
   protected:
     void executeEvent(event) override;
-    bool isButtonPressed(void);
     
     PlayerState*          m_playerState;
     event*                m_buttons;
     const uint8_t         m_buttonCount = 6;
     unsigned long         m_previousMillis = 0;
+    bool                  oldButtonState[6] = {1,1,1,1,1,1}; // 1==not pressed, 0==pressed
 };
 
 #endif

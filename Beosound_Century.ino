@@ -9,7 +9,7 @@
 #include "MenuController.h"
 
 ///////////////////////////////////
-//////// LCD STUFF    /////////////
+//////// INPUT STUFF  /////////////
 ///////////////////////////////////
 
 //LiquidCrystal_I2C lcd(0x27,16,2); /// address, cols, rows
@@ -20,10 +20,6 @@ FeedbackController feedbackController(lcd);
 Menu menu;
 
 PlayerState playerState(&feedbackController, &menu);
-
-///////////////////////////////////
-//////// INPUT STUFF  /////////////
-///////////////////////////////////
 
 event buttons[6] = {
   mode_cd,

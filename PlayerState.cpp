@@ -58,16 +58,11 @@ void PlayerState::updateFrequency(float frequency){
   this->m_feedbackController->updateFrequency(this->m_playerFrequencyMessage, this->m_playerFrequency);
 }
 
-void PlayerState::menuNavigateNext(void){
-  /*
-  retrieve menu items
-  retrieve current selected item from list
-  selected + 1
-  write out visible items to feedbackhandler
+void PlayerState::updateFrequencyModulation(modulation mod){
+  this->m_feedbackController->updateFrequencyModulation(this->m_frequencySwitchMessage,  mod == fm ? "FM" : "AM");
+}
 
-  +1
-  displayvisible menu items
-*/  
+void PlayerState::menuNavigateNext(void){
   String* menuItems = this->m_playerMenu->getMenuItems();
   if(this->m_selectedMenuItem<this->m_playerMenu->getMenuItemsCount()-1){
     this->m_selectedMenuItem++;
@@ -97,19 +92,4 @@ void PlayerState::menuSelect(void){
     Serial.println(menuItems[this->m_selectedMenuItem%2]);
     Serial.println(menuItems[this->m_selectedMenuItem+1%2]);
   }
-
-  // Serial.println(testString[0]);
-  // Serial.println(testString[1]);
-
-/*
-  enter menu
-  set selected
-  display visible menu items
-  highlight item
-  if menu open -> nest into item for sub items
-    (retrieve sub items)
-    keep parent menu item known?
-  Reset after ~3s in activity
-  
-*/  
 }

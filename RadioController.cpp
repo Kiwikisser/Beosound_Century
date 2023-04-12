@@ -85,4 +85,5 @@ void RadioController::setFrequency(void){
 
 void RadioController::toggleAMFM(void){
   this->m_modulation == fm ? this->m_modulation = am : this->m_modulation = fm;
+  this->m_playerState->updateFrequencyModulation(this->m_modulation);
 }

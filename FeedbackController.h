@@ -1,8 +1,8 @@
-#include <stdint.h>
-#include "WString.h"
 #ifndef feedback_controller_h_INCLUDED
 #define feedback_controller_h_INCLUDED
 
+#include <stdint.h>
+#include "WString.h"
 #include <Arduino.h>
 #include "LiquidCrystal_I2C.h"
 
@@ -18,6 +18,7 @@ class FeedbackController {
 
     void updateVolume(String, uint8_t);
     void updateFrequency(String, float);
+    void updateFrequencyModulation(String, String);
     
     void feedbackModeToCd(void);
     void feedbackModeToRadio(void);
@@ -34,7 +35,7 @@ class FeedbackController {
   protected:
     void setRevertDelay(uint16_t);
     void showMessagePersist(String, String);
-    void showMessageRevert(String, String);
+    void showMessageRevert(String, String, uint16_t);
   
     LiquidCrystal_I2C* m_lcd;
     String    m_messageOnTop;
